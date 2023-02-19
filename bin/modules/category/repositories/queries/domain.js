@@ -3,7 +3,7 @@ const Query = require('./query');
 const wrapper = require('../../../../helpers/utils/wrapper');
 const { NotFoundError } = require('../../../../helpers/error');
 
-class Product {
+class Category {
   constructor(db) {
     this.query = new Query(db);
   }
@@ -17,23 +17,23 @@ class Product {
   //   return wrapper.data(data);
   // }
 
-  async getAllProduct() {
-    const product = await this.query.findAll();
-    if (product.err) {
+  async getAllCategory() {
+    const category = await this.query.findAll();
+    if (category.err) {
       return wrapper.error(new NotFoundError("Can not find cart"));
     }
     const { data } = cart;
     return wrapper.data(data);
   }
 
-  async getProductById(id) {
-    const product = await this.query.findById(id);
-    if (product.err) {
-      return wrapper.error(new NotFoundError("Can not find Product"));
+  async getCategoryById(id) {
+    const category = await this.query.findById(id);
+    if (category.err) {
+      return wrapper.error(new NotFoundError("Can not find category"));
     }
-    const { data } = product;
+    const { data } = category;
     return wrapper.data(data);
   }
 }
 
-module.exports = Product;
+module.exports = Category;
